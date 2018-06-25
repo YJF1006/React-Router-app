@@ -2,7 +2,7 @@
 * @Author: duqinzhi
 * @Date:   2018-06-25 11:05:29
 * @Last Modified by:   duqinzhi
-* @Last Modified time: 2018-06-25 19:10:07
+* @Last Modified time: 2018-06-25 21:43:59
 */
 //引入路由
 import React from 'react';
@@ -17,6 +17,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import Home from './Home.js';      //主页
 import User from './User.js';      //用户
 import Profile from './Profile.js' //个人设置
+import Login from './Login.js'
+import ProtectedRoute from './ProtectedRoute.js';   //受保护的个人设置
 
 /*默认导出路由*/
 export default (
@@ -35,8 +37,8 @@ export default (
 					{/*ul 里面放着Link跳转*/}
 					<ul className='nav navbar-nav'>
 						<li><Link to='/home'>首页</Link></li>
-						<li><Link to='/User'>用户管理</Link></li>	
-						<li><Link to='/Profile'>个人设置</Link></li>
+						<li><Link to='/user'>用户管理</Link></li>	
+						<li><Link to='/profile'>个人设置</Link></li>
 					</ul>
 				</div>
 			</nav>
@@ -49,7 +51,8 @@ export default (
 							<Route exact path='/' render={props=><div>首页</div>}></Route>  {/* excat:精确匹配    采用函数定义法 */}
 							<Route path='/home' component={Home}></Route>
 							<Route path='/user' component={User}></Route>
-							<Route path='/profile' component={Profile}></Route>	
+							<Route path='/login' component={Login}></Route>
+							 <ProtectedRoute path="/profile" component={Profile}/> {/*受登录保护的路由*/}
 						</Switch>
 
 					</div>
@@ -106,4 +109,7 @@ export default (
 					params:{id: "1"}   重要关键
 					path:"/user/detail/:id"
 					url:"/user/detail/1"
+
+	6.受保护的路由(自己写的组件)
+	<ProtectedRoute path='' component={}></ProtectedRoute>   
  */
