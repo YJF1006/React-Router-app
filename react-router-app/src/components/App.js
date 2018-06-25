@@ -2,14 +2,15 @@
 * @Author: duqinzhi
 * @Date:   2018-06-25 11:05:29
 * @Last Modified by:   duqinzhi
-* @Last Modified time: 2018-06-25 15:12:18
+* @Last Modified time: 2018-06-25 19:10:07
 */
 //引入路由
 import React from 'react';
 import {
 	BrowserRouter as Router,  //容器
 	Route,  //一条路由
-	Link
+	Link,   //路由跳转
+	Switch   //路由匹配    从上往下匹配，要是有一个匹配上了，后面就不会匹配了更不会渲染
 } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 //引入组件
@@ -44,9 +45,13 @@ export default (
 			<div className="container">
 				<div className="row">
 					<div className="col-sm-12">
-						<Route path='/home' component={Home}></Route>
-						<Route path='/user' component={User}></Route>
-						<Route path='/profile' component={Profile}></Route>	
+						<Switch> 
+							<Route exact path='/' render={props=><div>首页</div>}></Route>  {/* excat:精确匹配    采用函数定义法 */}
+							<Route path='/home' component={Home}></Route>
+							<Route path='/user' component={User}></Route>
+							<Route path='/profile' component={Profile}></Route>	
+						</Switch>
+
 					</div>
 				</div>
 			</div>
@@ -55,8 +60,8 @@ export default (
 	</Router>
 )
 
-/*1.引入路由 Router  Route Link
-  2. render 的时候用
+/*1.引入路由 Router  Route Link  Switch
+  2. render 的时候用 
   		render(
 			<Router>
 				<div> 
@@ -74,5 +79,31 @@ export default (
 				</div>
 			</Router>
   		)
+  	3.Switch  //路由匹配    从上往下匹配，要是有一个匹配上了，后面就不会匹配了更不会渲染
+	
+	4.<Route exact path='/' render={props=><div>首页</div>}></Route> 
+		exact: 代表精确匹配
+		render={props=><div></div>}   组件的箭头函数定义
+			等价于
+			render = function(props){
+				return <div></div>
+			}
 
+	5. 路由里面有
+	 history ： 跳转路由和路径
+	 location： 当前路径
+	 match ： 匹配结果  传的占位符(url里面的参数)在  this.match.params.参数名
+
+	 	例如： * 1.history    //跳转路由或者路径的
+				2.location   //代表当前路径
+						hash:""
+						key:"2l5zps"
+						pathname:"/user/detail/1"
+						search:""
+						state:undefined
+				3.match:      //匹配结果 如果匹配上就是对象，匹配不上就是null
+					isExact:true   //是否精确匹配
+					params:{id: "1"}   重要关键
+					path:"/user/detail/:id"
+					url:"/user/detail/1"
  */

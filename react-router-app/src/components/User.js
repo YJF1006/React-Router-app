@@ -2,7 +2,7 @@
 * @Author: duqinzhi
 * @Date:   2018-06-25 11:08:05
 * @Last Modified by:   duqinzhi
-* @Last Modified time: 2018-06-25 16:28:57
+* @Last Modified time: 2018-06-25 18:59:04
 */
 import React,{Component} from 'react';
 import {Router,Route,Link} from 'react-router-dom';
@@ -26,7 +26,7 @@ export default class User extends Component{
 				<div className="col-sm-10">
 					<Route path='/user/list' component={UserList}></Route>
 					<Route path='/user/add'  component={UserAdd}></Route>
-					<Route path='/user/detail/:d'  component={UserDetail}></Route>
+					<Route path='/user/detail/:id'  component={UserDetail}></Route>
 				</div>
 			</div>
 		)
