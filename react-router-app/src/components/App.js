@@ -2,7 +2,7 @@
 * @Author: duqinzhi
 * @Date:   2018-06-25 11:05:29
 * @Last Modified by:   duqinzhi
-* @Last Modified time: 2018-06-25 21:43:59
+* @Last Modified time: 2018-06-26 08:04:29
 */
 //引入路由
 import React from 'react';
@@ -17,7 +17,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import Home from './Home.js';      //主页
 import User from './User.js';      //用户
 import Profile from './Profile.js' //个人设置
-import Login from './Login.js'
+import Login from './Login.js'    //登录按钮
+import MenuLink from './MenuLink.js';      //高亮显示组件（chiledren）
 import ProtectedRoute from './ProtectedRoute.js';   //受保护的个人设置
 
 /*默认导出路由*/
@@ -36,9 +37,9 @@ export default (
 					</div>
 					{/*ul 里面放着Link跳转*/}
 					<ul className='nav navbar-nav'>
-						<li><Link to='/home'>首页</Link></li>
-						<li><Link to='/user'>用户管理</Link></li>	
-						<li><Link to='/profile'>个人设置</Link></li>
+						<MenuLink label='首页' to='/home/'></MenuLink>  {/*传的属性有三个 label to */}
+						<MenuLink label='用户管理' to='/user/'></MenuLink>
+						<MenuLink label='个人设置' to='/profile/'></MenuLink>
 					</ul>
 				</div>
 			</nav>
@@ -111,5 +112,8 @@ export default (
 					url:"/user/detail/1"
 
 	6.受保护的路由(自己写的组件)
-	<ProtectedRoute path='' component={}></ProtectedRoute>   
+	<ProtectedRoute path='' component={}></ProtectedRoute> 
+
+	7. 有时候我们需要一个组件不管是否匹配都显示一些东西  即用 
+		<MemuLink label='文本' to='/跳转路径'></MemuLink> 	    
  */
