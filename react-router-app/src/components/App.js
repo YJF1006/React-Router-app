@@ -2,7 +2,7 @@
 * @Author: duqinzhi
 * @Date:   2018-06-25 11:05:29
 * @Last Modified by:   duqinzhi
-* @Last Modified time: 2018-06-26 08:04:29
+* @Last Modified time: 2018-06-26 08:33:40
 */
 //引入路由
 import React from 'react';
@@ -20,7 +20,7 @@ import Profile from './Profile.js' //个人设置
 import Login from './Login.js'    //登录按钮
 import MenuLink from './MenuLink.js';      //高亮显示组件（chiledren）
 import ProtectedRoute from './ProtectedRoute.js';   //受保护的个人设置
-
+import NotFound from './404.js';
 /*默认导出路由*/
 export default (
 	<Router>
@@ -53,7 +53,8 @@ export default (
 							<Route path='/home' component={Home}></Route>
 							<Route path='/user' component={User}></Route>
 							<Route path='/login' component={Login}></Route>
-							 <ProtectedRoute path="/profile" component={Profile}/> {/*受登录保护的路由*/}
+							<ProtectedRoute path="/profile" component={Profile}/> {/*受登录保护的路由*/}
+							<Route  component={NotFound}></Route>   {/*不给path 的时候，代表所有路径都可以匹配*/}
 						</Switch>
 
 					</div>
