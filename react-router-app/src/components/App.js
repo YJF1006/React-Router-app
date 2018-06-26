@@ -2,7 +2,7 @@
 * @Author: duqinzhi
 * @Date:   2018-06-25 11:05:29
 * @Last Modified by:   duqinzhi
-* @Last Modified time: 2018-06-26 08:33:40
+* @Last Modified time: 2018-06-26 08:44:36
 */
 //引入路由
 import React from 'react';
@@ -43,7 +43,6 @@ export default (
 					</ul>
 				</div>
 			</nav>
-
 			{/*容器里面放一个行再放一个12列里面放Route*/}
 			<div className="container">
 				<div className="row">
@@ -113,8 +112,37 @@ export default (
 					url:"/user/detail/1"
 
 	6.受保护的路由(自己写的组件)
-	<ProtectedRoute path='' component={}></ProtectedRoute> 
+		<ProtectedRoute path='' component={}></ProtectedRoute> 
+			ProtectedRoute组件中的Redirect组件  重定向组件 react原有的组件要引入
+				1.  to 是一个对象里面有两个属性  一个是pathname  一个是state(是个对象存着从哪来)
 
-	7. 有时候我们需要一个组件不管是否匹配都显示一些东西  即用 
-		<MemuLink label='文本' to='/跳转路径'></MemuLink> 	    
+				<Redirect to={
+					{
+						pathname:''
+						state:{from:props.location.pathname}
+					}
+				}></Redirect>
+
+	7. 有时候我们需要一个组件不管是否匹配都显示一些东西  即用来 
+		<MemuLink label='文本' to='/跳转路径'></MemuLink> 
+
+		MenuLink 组件里面有个children属性(里面放的也是匿名函数)，它会不管当前路径是否匹配上，都会渲染对应的组件
+			<Route path={props.to} children={({match})=>{ 此处props有三个属性，可以解构  {match} 代表是否匹配上   匹配上加类名active,不匹配了就''
+				return (
+					<li className={match? 'active':''}><Link to={props.to}>{props.label}</Link></li>
+				)
+			}}></Route>
+  	
+  	8. component 和render 渲染的区别
+  		component 对应一个组件，当url路径跟当前Route path匹配时渲染
+ 		render 对应一个匿名组件函数  当url路径跟当前Route path匹配时渲染
+      		component 和render 渲染机制一样，只不过对应不同
+
+    9. Prompt 弹出框组件  路由自带的一个组件
+		1. 它有一个属性为 when 是布尔值
+				当 when=true 的时候跳转的时候会提示
+				当 when=false 的时候跳转的时候不会提示
+		2. 属性 message 是存放提示信息的
+			一般是个匿名函数，(location)=>`确定跳转到${location.pathname}` 
+
  */
